@@ -1,4 +1,4 @@
-
+<?php $pager = $this->pagination()->getPager(); ?> <!-- for pagination -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
     <div class="row">
          <div class="input-field col s12">
          <a href="<?php echo $this->getUrl()->getUrl('form'); ?>" class="btn btn-primary pink" name="update">Add CMS Page
-                    <i class="material-icons right">add</i>
+                    
         </a>                    
         </div>
    </div>
@@ -36,7 +36,9 @@
             </thead>
 
             <tbody>
-            <?php $data = $this->getCms();
+            <?php 
+            $data = $this->getPaginationCms();  // line add for pagination
+            //$data = $this->getCms();
                     if ($data == ""):
                         ?>
                             <tr>
@@ -91,6 +93,27 @@
             </tbody>
         </table>
             </p>
+
+            <div class="d-flex justify-content-center">
+            <ul class="pagination pagination-lg">
+
+                <li class="page-item <?php echo (!$pager->getPrevious()) ? 'disabled' : ''; ?>">
+                    <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getPrevious()], true); ?>">Previous</a>
+                </li>
+
+                <?php foreach (range($pager->getStart(), $pager->getNoOfPages()) as $value) : ?>
+                    <li class="page-item <?php echo ($this->getRequest()->getGet('page') == $value) ? 'active' : ''; ?>">
+                        <a class="page-link" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $value], true); ?>"><?php echo $value; ?></a>
+                    </li>
+                <?php endforeach; ?>
+
+                <li class="page-item <?php echo (!$pager->getNext()) ? 'disabled' : ''; ?>">
+                    <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getNext()], true); ?>">Next</a>
+                </li>
+            </ul>
+        </div>
+
+
           </div>
           
         </div>

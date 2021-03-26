@@ -17,7 +17,7 @@ class Attribute extends \Block\Core\Template
     public function setProduct($products = null)
     {
         if (!$products) {
-            $products = \Mage::getModel("Model\ProductModel");
+            $products = \Mage::getModel("Model\Product");
             if ($id = $this->getRequest()->getGet('id')) {
                 $product = $products->load($id);
                 if (!$product) {
@@ -40,7 +40,7 @@ class Attribute extends \Block\Core\Template
 
     public function getAttributes()
     {
-        $attribute = \Mage::getModel("Model\AttributeModel");
+        $attribute = \Mage::getModel("Model\Attribute");
         $query = "select * from attribute where entityTypeId='product' ORDER BY sortOrder   ";
         $attributes = $attribute->fetchAll($query);
 
@@ -49,7 +49,7 @@ class Attribute extends \Block\Core\Template
 
     public function getOptions($id)
     {
-        $option = \Mage::getModel("Model\AttributeModel\OptionModel");
+        $option = \Mage::getModel("Model\Attribute\OptionModel");
 
         $query = "select * from attribute_option where attributeId='{$id}' ORDER BY sortOrder;";
         $options = $option->fetchAll($query);

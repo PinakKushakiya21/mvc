@@ -23,7 +23,7 @@ class Product extends \Controller\Core\Admin{
     public function indexAction()
     {
         $productId = (int)$this->getRequest()->getGet('id');
-        $product = \Mage::getModel("Model\productModel")->load($productId);
+        $product = \Mage::getModel("Model\Product")->load($productId);
         if(!$product){
             throw new Exception("No Record Found.!", 1);
             
@@ -58,7 +58,7 @@ class Product extends \Controller\Core\Admin{
     {
         try 
         {
-            $product = \Mage::getModel("Model\productModel");
+            $product = \Mage::getModel("Model\Product");
             
 
             if(!$this->getRequest()->isPost())
@@ -119,7 +119,7 @@ class Product extends \Controller\Core\Admin{
 
 			$id = $this->getRequest()->getGet('id');
 			$st = $this->getRequest()->getGet('status');
-			$model = \Mage::getModel('model\productModel');
+			$model = \Mage::getModel('model\Product');
 			$model->id =$id;
 			$model->status = $st;
             if($model->changeStatus()){
@@ -140,7 +140,7 @@ class Product extends \Controller\Core\Admin{
             }
 			
 			$id = $this->getRequest()->getGet('id');
-			$delModel = \Mage::getModel('model\productModel');
+			$delModel = \Mage::getModel('model\Product');
 			$delModel->id = $id;
 			$delModel->delete();
             if($delModel->delete()){
@@ -155,6 +155,7 @@ class Product extends \Controller\Core\Admin{
 		}
         $this->redirect('grid',null,null,true);
 	}
+    
 }
 ?>
 

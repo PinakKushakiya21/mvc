@@ -16,7 +16,7 @@ class Form extends \Block\Core\Template{
     {
         if (!$products) 
         {
-            $products = \Mage::getModel("Model\productModel");
+            $products = \Mage::getModel("Model\Product");
             if ($id = $this->getRequest()->getGet('id')) 
             {
                 $product = $products->load($id);

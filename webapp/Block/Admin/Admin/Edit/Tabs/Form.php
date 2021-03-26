@@ -17,7 +17,7 @@ class Form extends \Block\Core\Template
     {
         if (!$admins) 
         {
-            $admins = \Mage::getModel("Model\adminModel");
+            $admins = \Mage::getModel("Model\Admin");
             if ($id = $this->getRequest()->getGet('id')) 
             {
                 $admin = $admins->load($id);

@@ -34,7 +34,7 @@ class Shipment extends \Controller\Core\Admin{
     {
         try 
         { 
-            $shipment = \Mage::getModel("Model\shipmentModel");
+            $shipment = \Mage::getModel("Model\Shipment");
             if(!$this->getRequest()->isPost())
             {
                 throw new Exception("Invalid Post Request");
@@ -75,7 +75,7 @@ class Shipment extends \Controller\Core\Admin{
 
 			$id = $this->getRequest()->getGet('id');
 			$st = $this->getRequest()->getGet('status');
-			$model = \Mage::getModel('model\shipmentModel');
+			$model = \Mage::getModel('model\Shipment');
 			$model->id =$id;
 			$model->status = $st;
 			$model->changeStatus();
@@ -96,7 +96,7 @@ class Shipment extends \Controller\Core\Admin{
             }
 			
 			$id = $this->getRequest()->getGet('id');
-			$delModel = \Mage::getModel('model\shipmentModel');
+			$delModel = \Mage::getModel('model\Shipment');
 			$delModel->id = $id;
 			$delModel->delete();
             if($delModel->delete()){

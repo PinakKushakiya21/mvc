@@ -45,7 +45,7 @@ class Customer extends \Controller\Core\Admin{
                 throw new Exception("Invalid Post Request");
             }
             $customerId = $this->getRequest()->getGet('id');
-            $customer = \Mage::getModel("Model\CustomerAddressModel");
+            $customer = \Mage::getModel("Model\CustomerAddress");
         
             $query="SELECT addressType from customer_address where customerId =".$customerId;
             $existing = $customer->fetchAll($query); 
@@ -145,7 +145,7 @@ class Customer extends \Controller\Core\Admin{
     {
         try 
         { 
-            $customer = \Mage::getModel("Model\customerModel");
+            $customer = \Mage::getModel("Model\Customer");
             if(!$this->getRequest()->isPost())
             {
                 throw new Exception("Invalid Post Request");
@@ -188,7 +188,7 @@ class Customer extends \Controller\Core\Admin{
 
 			$id = $this->getRequest()->getGet('id');
 			$st = $this->getRequest()->getGet('status');
-			$model = \Mage::getModel('model\customerModel');
+			$model = \Mage::getModel('model\Customer');
 			$model->id =$id;
 			$model->status = $st;
 			$model->changeStatus();
@@ -210,7 +210,7 @@ class Customer extends \Controller\Core\Admin{
             }
 			
 			$id = $this->getRequest()->getGet('id');
-			$delModel = \Mage::getModel('model\customerModel');
+			$delModel = \Mage::getModel('model\Customer');
 			$delModel->id = $id;
 			$delModel->delete();
             if($delModel->delete()){

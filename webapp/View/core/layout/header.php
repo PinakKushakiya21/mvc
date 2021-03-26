@@ -19,31 +19,31 @@
 <div class="nav-wrapper orange" >
 <a href="#!" class="brand-logo" style="padding-left:20px">QuesteCom</a>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','attribute')?>">Attribute Options</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\attribute')?>">Attribute Options</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','shipment')?>">Shipping</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\shipment')?>">Shipping</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','payment')?>">Payments</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\payment')?>">Payments</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','product')?>">Products</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\product')?>">Products</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','category')?>">Categories</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\category')?>">Categories</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','customer')?>">Customer</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\customer')?>">Customer</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin')?>">Admin</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\admin')?>">Admin</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','customergroup')?>">Customer Group</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\customergroup')?>">Customer Group</a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-<li><a href="<?php echo $this->getUrl()->getUrl('grid','cms')?>">CMS Pages</a></li>
+<li><a href="<?php echo $this->getUrl()->getUrl('grid','admin\cms')?>">CMS Pages</a></li>
 </ul>
 </div>
 </nav>

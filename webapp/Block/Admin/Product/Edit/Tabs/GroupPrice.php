@@ -13,7 +13,7 @@ class GroupPrice extends \Block\Core\Template{
         $this->setTemplate("./admin/product/edit/tabs/groupPrice.php");
     }
 
-    public function setProduct(\Model\ProductModel $product)
+    public function setProduct(\Model\Product $product)
     {
         $this->product = $product;
         return $this;
@@ -35,7 +35,7 @@ class GroupPrice extends \Block\Core\Template{
                     LEFT JOIN product p
                         ON pgp.productId = p.productId
         ";
-        $customerGroups = \Mage::getModel("Model\CustomerGroupModel");   
+        $customerGroups = \Mage::getModel("Model\CustomerGroup");   
         $customerGroup =  $customerGroups->fetchAll($query);
         return $customerGroup;
     }

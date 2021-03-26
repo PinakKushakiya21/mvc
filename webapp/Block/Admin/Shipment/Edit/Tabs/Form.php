@@ -18,7 +18,7 @@ class Form extends \Block\Core\Template
       {
           if (!$shipments) 
           {
-              $shipments = \Mage::getModel("Model\shipmentModel");
+              $shipments = \Mage::getModel("Model\Shipment");
               if ($id = $this->getRequest()->getGet('id')) 
               {
                   $shipment = $shipments->load($id);

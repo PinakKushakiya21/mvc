@@ -1,3 +1,4 @@
+<?php $pager = $this->pagination()->getPager(); ?> <!-- for pagination -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
     <div class="row">
          <div class="input-field col s12">
          <a href="<?php echo $this->getUrl()->getUrl('form');?>" class="btn btn-primary pink" name="update">Add Category
-                    <i class="material-icons right">add</i>
+                    
         </a>                    
         </div>
    </div>
@@ -34,7 +35,8 @@
             </thead>
             <tbody>
             <?php
-                $data = $this->getCategories();
+            $data = $this->getPaginationCategories();  // line add for pagination
+                //$data = $this->getCategories();
                 if($data == ""):
                     echo '<p class=text-center><strong>No Record Found</strong><p>';    
                 else:
@@ -77,6 +79,27 @@
             </tbody>
         </table>
             </p>
+
+            <div class="d-flex justify-content-center">
+            <ul class="pagination pagination-lg">
+
+                <li class="page-item <?php echo (!$pager->getPrevious()) ? 'disabled' : ''; ?>">
+                    <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getPrevious()], true); ?>">Previous</a>
+                </li>
+
+                <?php foreach (range($pager->getStart(), $pager->getNoOfPages()) as $value) : ?>
+                    <li class="page-item <?php echo ($this->getRequest()->getGet('page') == $value) ? 'active' : ''; ?>">
+                        <a class="page-link" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $value], true); ?>"><?php echo $value; ?></a>
+                    </li>
+                <?php endforeach; ?>
+
+                <li class="page-item <?php echo (!$pager->getNext()) ? 'disabled' : ''; ?>">
+                    <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getNext()], true); ?>">Next</a>
+                </li>
+            </ul>
+        </div>
+
+
           </div>
           
         </div>

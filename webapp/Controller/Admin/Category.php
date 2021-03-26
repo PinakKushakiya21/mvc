@@ -40,7 +40,7 @@ class Category extends \Controller\Core\Admin{
             {
                 throw new \Exception("Invalid Request");
             }
-            $category = \Mage::getModel('model\categoryModel');
+            $category = \Mage::getModel('model\Category');
             $categoryId = $this->getRequest()->getGet('id');
             if ($categoryId) 
             {
@@ -71,7 +71,7 @@ class Category extends \Controller\Core\Admin{
             }
             else
             {   
-                $parent = \Mage::getModel('model\categoryModel')->load($category->parentId);
+                $parent = \Mage::getModel('model\Category')->load($category->parentId);
                 if (!$parent) {
                     throw new \Exception("Unable to load parent");
                 } 
@@ -85,7 +85,7 @@ class Category extends \Controller\Core\Admin{
             // {
             //     throw new Exception("Invalid Post Request");
             // }
-            // $category = \Mage::getModel("Model\categoryModel");
+            // $category = \Mage::getModel("Model\Category");
             // $categoryId =$this->getRequest()->getGet('id');
             // if ($categoryId) {
             //     $category =  $category->load($categoryId);
@@ -116,7 +116,7 @@ class Category extends \Controller\Core\Admin{
             //     $pathId = $category->categoryId;
             // }
             // else{
-            //     $parent = \Mage::getModel("model\categoryModel")->load($category->parentId);
+            //     $parent = \Mage::getModel("model\Category")->load($category->parentId);
             //     if(!$parent)
             //     {
             //         throw new Exception("Unable To Load Parent.", 1);   
@@ -141,7 +141,7 @@ class Category extends \Controller\Core\Admin{
 
 			$id = $this->getRequest()->getGet('id');
 			$st = $this->getRequest()->getGet('status');
-			$model = \Mage::getModel('model\categoryModel');
+			$model = \Mage::getModel('model\Category');
 			$model->id =$id;
 			$model->status = $st;
 			$model->changeStatus();
@@ -162,7 +162,7 @@ class Category extends \Controller\Core\Admin{
             }
 			
 			$id = $this->getRequest()->getGet('id');
-			$delModel = \Mage::getModel('model\categoryModel');
+			$delModel = \Mage::getModel('model\Category');
 			$delModel->id = $id;
 			$delModel->delete();
             $delModel->delete();

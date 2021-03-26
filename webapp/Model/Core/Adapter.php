@@ -127,6 +127,16 @@ class Adapter{
 		return true;
 	}
 
+	public function fetchOne($query)
+	{
+		if (!$this->isConnected()) {
+			$this->connection();
+		}
+		$result = $this->getConnect()->query($query);
+
+		return  $result->num_rows;
+	}
+
 }
 
 ?>

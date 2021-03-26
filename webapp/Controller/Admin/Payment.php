@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Admin;
+use Exception;
 
 \Mage::loadClassByFileName('controller\core\admin');
   
@@ -34,7 +35,7 @@ class Payment extends \Controller\Core\Admin{
     {
         try 
         { 
-            $payment = \Mage::getModel("Model\paymentModel");
+            $payment = \Mage::getModel("Model\Payment");
             if(!$this->getRequest()->isPost())
             {
                 throw new Exception("Invalid Post Request");
@@ -75,7 +76,7 @@ class Payment extends \Controller\Core\Admin{
 
 			$id = $this->getRequest()->getGet('id');
 			$st = $this->getRequest()->getGet('status');
-			$model = \Mage::getModel('model\paymentModel');
+			$model = \Mage::getModel('model\Payment');
 			$model->id =$id;
 			$model->status = $st;
 			$model->changeStatus();
@@ -98,7 +99,7 @@ class Payment extends \Controller\Core\Admin{
             }
 			
 			$id = $this->getRequest()->getGet('id');
-			$delModel = \Mage::getModel('model\paymentModel');
+			$delModel = \Mage::getModel('model\Payment');
 			$delModel->id = $id;
 			$delModel->delete();
             if($delModel->delete()){

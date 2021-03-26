@@ -18,7 +18,7 @@ class Grid extends \Block\Core\Template
     public function setAttributes($attributes = null)
     {
         if (!$attributes) {
-            $attributes = \Mage::getModel("Model\AttributeModel");
+            $attributes = \Mage::getModel("Model\Attribute");
             $attributes = $attributes->fetchAll();
         }
         $this->attributes = $attributes;
@@ -34,5 +34,40 @@ class Grid extends \Block\Core\Template
     public function getTitle()
     {
         return "Manage Attributes";
+    }
+
+    public function getPaginationAttributes()
+    {
+        $attributes = \Mage::getModel("Model\Attribute");
+        $recordPerPage = $this->getPager()->getRecordPerPage();
+        $start = ($this->getRequest()->getGet('page') * $recordPerPage) - $recordPerPage;
+        if ($start < 0) {
+            $start =0;
+        }
+        $query = "SELECT * from attribute LIMIT {$start},{$recordPerPage}";
+        return $attributes->fetchAll($query);
+    }
+
+
+    public function pagination()
+    {
+        $query = "Select * from `attribute`";
+        $attribute = \Mage::getModel('Model\Attribute');
+
+        $records = $attribute->getAdapter()->fetchOne($query);
+
+        $this->getPager()->setTotalRecords($records);
+        $this->getPager()->setRecordPerPage(2);
+
+        $page = $this->getRequest()->getGet('page'); 
+
+        if (!$page) {
+            $page = 1;
+        }
+        $this->getPager()->setCurrentPage($page);
+
+        $this->getPager()->calculate();
+
+        return $this;
     }
 }

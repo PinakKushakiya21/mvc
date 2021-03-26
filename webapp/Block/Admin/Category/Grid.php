@@ -9,13 +9,14 @@ class Grid extends \Block\Core\Template{
     protected $categories = null;
     public function __construct()
     {
+        parent::__construct();
         $this->setTemplate('./admin/category/grid.php');
     }
 
     public function setCategories($categories = null)
     {
         if (!$categories) {
-            $categories = \Mage::getModel("model\categoryModel");
+            $categories = \Mage::getModel("model\Category");
             $query = "select * from `category`";
             $categories = $categories->fetchAll($query);
         }
@@ -37,10 +38,10 @@ class Grid extends \Block\Core\Template{
 
     public function getName($category)
     {
-        $categoryModel = \Mage::getModel('model\categoryModel');
+        $Category = \Mage::getModel('model\Category');
         if (!$this->categoryOptions) {
-            $query = "SELECT `categoryId`,`categoryName` FROM `{$categoryModel->getTableName()}`;";
-            $this->categoryOptions = $categoryModel->getAdapter()->fetchPairs($query);
+            $query = "SELECT `categoryId`,`categoryName` FROM `{$Category->getTableName()}`;";
+            $this->categoryOptions = $Category->getAdapter()->fetchPairs($query);
         }
 
         $pathIds = explode("/",$category->pathId);
@@ -53,6 +54,40 @@ class Grid extends \Block\Core\Template{
         return $name;
     }
 
+    public function getPaginationCategories()
+    {
+        $categories = \Mage::getModel("Model\Category");
+        $recordPerPage = $this->getPager()->getRecordPerPage();
+        $start = ($this->getRequest()->getGet('page') * $recordPerPage) - $recordPerPage;
+        if ($start < 0) {
+            $start =0;
+        }
+        $query = "SELECT * from category LIMIT {$start},{$recordPerPage}";
+        return $categories->fetchAll($query);
+    }
+
+
+    public function pagination()
+    {
+        $query = "Select * from `category`";
+        $category = \Mage::getModel('Model\Category');
+
+        $records = $category->getAdapter()->fetchOne($query);
+
+        $this->getPager()->setTotalRecords($records);
+        $this->getPager()->setRecordPerPage(2);
+
+        $page = $this->getRequest()->getGet('page'); 
+
+        if (!$page) {
+            $page = 1;
+        }
+        $this->getPager()->setCurrentPage($page);
+
+        $this->getPager()->calculate();
+
+        return $this;
+    }
 }
 
 ?>

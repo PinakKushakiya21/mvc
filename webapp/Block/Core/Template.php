@@ -10,12 +10,31 @@ class Template
     protected $message = null;
     protected $request= null;
     protected $url = null;
+    protected $pager = null;
 
     public function __construct()
     {
         
         $this->setRequest();
         $this->setUrl();        
+    }
+
+    public function setPager(\Controller\Core\Pager $pager = null)
+    {
+        if (!$pager) {
+            $pager = \Mage::getController('Controller\Core\Pager');
+        }
+        $this->pager = $pager;
+
+        return $this;
+    }
+
+    public function getPager()
+    {
+        if (!$this->pager) {
+            $this->setPager();
+        }
+        return $this->pager;
     }
 
     public function getChildren()

@@ -17,7 +17,7 @@ class Form extends \Block\Core\Template
     {
         if (!$payments) 
         {
-            $payments = \Mage::getModel("Model\paymentModel");
+            $payments = \Mage::getModel("Model\Payment");
             if ($id = $this->getRequest()->getGet('id')) 
             {
                 $payment = $payments->load($id);

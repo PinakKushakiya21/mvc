@@ -1,4 +1,4 @@
-
+<?php $pager = $this->pagination()->getPager(); ?> <!-- for pagination -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +39,8 @@
 
             <tbody>
             <?php
-                $data = $this->getProducts();
+            $data = $this->getPaginationProducts();  // line add for pagination
+                //$data = $this->getProducts();
                 if($data == ""){
                     echo '<p class=text-center><strong>No Record Found</strong><p>';    
                 }   
@@ -86,10 +87,28 @@
             </tbody>
         </table>
             </p>
+
+            <div class="d-flex justify-content-center">
+            <ul class="pagination pagination-lg">
+
+                <li class="page-item <?php echo (!$pager->getPrevious()) ? 'disabled' : ''; ?>">
+                    <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getPrevious()], true); ?>">Previous</a>
+                </li>
+
+                <?php foreach (range($pager->getStart(), $pager->getNoOfPages()) as $value) : ?>
+                    <li class="page-item <?php echo ($this->getRequest()->getGet('page') == $value) ? 'active' : ''; ?>">
+                        <a class="page-link" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $value], true); ?>"><?php echo $value; ?></a>
+                    </li>
+                <?php endforeach; ?>
+
+                <li class="page-item <?php echo (!$pager->getNext()) ? 'disabled' : ''; ?>">
+                    <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getNext()], true); ?>">Next</a>
+                </li>
+            </ul>
+        </div>
           </div>
           
         </div>
-       
     </div>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

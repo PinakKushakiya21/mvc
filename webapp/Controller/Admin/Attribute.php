@@ -39,7 +39,7 @@ class Attribute extends \Controller\Core\Admin
     public function saveAction()
     {
         try {
-            $attribute = \Mage::getModel("Model\AttributeModel");
+            $attribute = \Mage::getModel("Model\Attribute");
             if (!$this->getRequest()->isPost()) {
                 throw new Exception("Invalid Post Request", 1);
             }
@@ -94,11 +94,11 @@ class Attribute extends \Controller\Core\Admin
             }
 
             $id = $this->getRequest()->getGet('id');
-            $delModel = \Mage::getModel('Model\AttributeModel');
+            $delModel = \Mage::getModel('Model\Attribute');
             $attributeData = $delModel->load($id);
             $modelname = 'Model\\' . $attributeData->entityTypeId . "Model";
 
-            $model = Mage::getModel($modelname);
+            $model = \Mage::getModel($modelname);
             $query = "ALTER TABLE `{$attributeData->entityTypeId}` DROP `{$attributeData->name}`;";
 
             if ($model->alterTable($query)) {
@@ -119,7 +119,24 @@ class Attribute extends \Controller\Core\Admin
 
     public function optionAction()
     {
-        $attribute = \Mage::getModel('Model\AttributeModel');
+        $attribute = \Mage::getModel('Model\Attribute');
         $id = $this->getRequest()->getGet('id');
+    }
+
+    public function attributeAction()
+    {
+
+        $attribute = \Mage::getModel('Model\Attribute');
+        $query = "SELECT * from `attribute_` where `entityTypeId` = 'product'";
+        $data = $attribute->fetchAll($query);
+
+        foreach ($attribute as $data => $attribute) {
+            
+            // $option = \Mage::getModel($attribute->backendModel);
+            // $options = $option->setAttribute($attribute)->getOptions();
+            // print_r($options);
+            print_r($attribute->getOptions());
+            
+        }
     }
 }

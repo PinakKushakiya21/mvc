@@ -16,7 +16,7 @@ class Option extends \Block\Core\Template
     public function setOption($options = null)
     {
         if (!$options) {
-            $options = \Mage::getModel("Model\AttributeModel\OptionModel");
+            $options = \Mage::getModel("Model\Attribute\OptionModel");
             if ($id = $this->getRequest()->getGet('id')) {
                 $query = "select * from attribute_option where attributeId={$id}";
                 $options = $options->fetchAll($query);

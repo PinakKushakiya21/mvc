@@ -17,7 +17,7 @@ class Form extends \Block\Core\Template{
     {
         if (!$categories)
         {
-            $categories = \Mage::getModel("Model\categoryModel");
+            $categories = \Mage::getModel("Model\Category");
             if ($id = $this->getRequest()->getGet('id')) 
             {
                 $category = $categories->load($id);

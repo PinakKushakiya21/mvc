@@ -10,7 +10,7 @@ class Mage {
     
     public static function prepareClassName($key,$namespace)
     {
-        $className = $key.' '.$namespace;
+        $className = $key.''.$namespace;
         $className = str_replace('\\',' ',$className); 
         $className = ucwords($className);
         $className = str_replace(' ','\\',$className);

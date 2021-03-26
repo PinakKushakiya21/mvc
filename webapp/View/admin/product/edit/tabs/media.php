@@ -55,7 +55,7 @@
                                         foreach ($imageData->getData() as $key => $value) :
                                     ?>
                                     <tr>
-                                        <td><img src="./Skin/admin/images/<?php echo "{$id}/". $value->imageName ?>" height="100px" width="100px" alt=""></td>
+                                        <td><img src="./Media/Images/Product/<?php echo "{$id}/". $value->imageName ?>" height="100px" width="100px" alt=""></td>
                                         <td><input type="text" name="image[<?php echo $value->productGalleryId; ?>][imagelabel]" value="<?php echo $value->imagelabel; ?>"> </td>
                                         <td> 
                                             <label>

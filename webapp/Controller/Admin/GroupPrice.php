@@ -19,7 +19,7 @@ class GroupPrice extends \Controller\Core\Admin
             if(array_key_exists('Exist',$groupData)){
                 foreach ($groupData['Exist'] as $group_id => $groupPrice) {
                     $query ="UPDATE product_group_price SET groupPrice = {$groupPrice} WHERE groupId = {$group_id} AND productId = {$productId}";
-                    $groupPriceModel = \Mage::getModel("Model\GroupPriceModel");
+                    $groupPriceModel = \Mage::getModel("Model\GroupPrice");
                     $groupPriceModel->update($query);
                     
                 }
@@ -27,7 +27,7 @@ class GroupPrice extends \Controller\Core\Admin
 
             if(array_key_exists('New',$groupData)){
                 foreach ($groupData['New'] as $group_id => $groupPrice) {
-                    $groupPriceModel = \Mage::getModel("Model\GroupPriceModel");
+                    $groupPriceModel = \Mage::getModel("Model\GroupPrice");
                     $groupPriceModel->productId = $productId;
                     $groupPriceModel->groupId = $group_id;
                     $groupPriceModel->groupPrice = $groupPrice;

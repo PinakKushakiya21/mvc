@@ -14,7 +14,7 @@ class CustomerAddress extends \Block\Core\Template
     public function setCustomerAddress($customers = null)
     {
         if (!$customers) {
-            $customers = \Mage::getModel("Model\customerModel");
+            $customers = \Mage::getModel("Model\Customer");
             if ($id = $this->getRequest()->getGet('id')) {
                 $customer = $customers->load($id);
                 if (!$customer) {
@@ -36,7 +36,7 @@ class CustomerAddress extends \Block\Core\Template
 
     public function getAddressData($id, $type)
     {
-        $customerAddress = \Mage::getModel("Model\CustomerAddressModel");
+        $customerAddress = \Mage::getModel("Model\CustomerAddress");
         $query = "SELECT * from customer_address where customerId = {$id} and addressType='{$type}'";
         if(!$customerAddress->fetchAll($query)){
             return $customerAddress;

@@ -43,7 +43,7 @@ class Media extends \Controller\Core\Admin
                     $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
                 }
 
-                $dir = './Skin/admin/images/'.$this->getRequest()->getGet('id');
+                $dir = './Media/Images/Product/'.$this->getRequest()->getGet('id');
 
                 if (!file_exists($dir) && !is_dir($dir)) {
                     mkdir($dir);
@@ -52,10 +52,10 @@ class Media extends \Controller\Core\Admin
                 if (empty($errors) == true) {
                     if (move_uploaded_file($file_tmp, "{$dir}/" . $file_name)) {
                         $productId = $this->getRequest()->getGet('id');
-                        $productModel = \Mage::getModel("Model\MediaModel");
-                        $productModel->productId = $productId;
-                        $productModel->imageName = $file_name;
-                        if ($productModel->save()) {
+                        $Product = \Mage::getModel("Model\Media");
+                        $Product->productId = $productId;
+                        $Product->imageName = $file_name;
+                        if ($Product->save()) {
                             $this->getMessage()->setSuccess("Image Uploaded Successfully !!");
                         }
                     }
@@ -177,7 +177,7 @@ class Media extends \Controller\Core\Admin
                 $filenames = $Media->fetchAll($query);
                 
 
-                $dir = './Skin/admin/images/'.$this->getRequest()->getGet('id');
+                $dir = './Media/Images/Product/'.$this->getRequest()->getGet('id');
 
 
                 foreach ($filenames->getData() as $key => $value) {
@@ -198,6 +198,6 @@ class Media extends \Controller\Core\Admin
         } catch (Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
         }
-        $this->redirect('form', 'product', null, false);
+        $this->redirect('form', 'product', null, true);
     }
 }

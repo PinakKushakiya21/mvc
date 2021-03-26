@@ -17,7 +17,7 @@ class Form extends \Block\Core\Template
     {
         if (!$groups) 
         {
-            $groups = \Mage::getModel("Model\customerGroupModel");
+            $groups = \Mage::getModel("Model\CustomerGroup");
             if ($id = $this->getRequest()->getGet('id')) 
             {
                 $groups = $groups->load($id);
