@@ -12,6 +12,6 @@ class Home extends \Block\Core\Template
 
     public function __construct()
     {
-        $this->setTemplate('./home.php');
+        $this->setTemplate('./home/home.php');
     }
 }

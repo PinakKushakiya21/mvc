@@ -1,5 +1,7 @@
 <?php
 
+spl_autoload_register(__NAMESPACE__ . "\Mage::loadClassByFileName");
+
 class Mage {
     
     public static function init()
@@ -19,7 +21,7 @@ class Mage {
 
     public static function getModel($className)
     {
-        self::loadClassByFileName($className);
+        //self::loadClassByFileName($className);
 
         $className = str_replace('\\',' ',$className);
         $className = ucwords($className);
@@ -29,7 +31,7 @@ class Mage {
     
     public static function getBlock($className)
     {
-        self::loadClassByFileName($className);
+        //self::loadClassByFileName($className);
 
         $className = str_replace('\\',' ',$className);
         $className = ucwords($className);
@@ -40,7 +42,7 @@ class Mage {
 
     public static function getController($className)
     {
-        self::loadClassByFileName($className);
+        //self::loadClassByFileName($className);
 
         $className = str_replace('\\',' ',$className);
         $className = ucwords($className);

@@ -54,14 +54,14 @@
                                         endif;
                                         ?>
                                     </td>
-                                    <td><?php echo $value->createdDate ?></td>
+                                    <td><?php echo $value->created_date ?></td>
                                     <th>
                                         <a href="<?php echo $this->getUrl()->getUrl('changeStatus', NULL, ['id' => $value->brandId, 'status' => $value->status], true); ?>">
                                             <i class="fa btn <?php echo ($value->status == 1) ? "fa-toggle-on btn-success" : "fa-toggle-off btn-outline-success"; ?>"></i>
                                         </a>
                                     </th>
-                                    <th><a href="<?php echo $this->getUrl()->getUrl('form', NULL, ['id' => $value->brandId]); ?>"><i class="fa fa-pencil btn-info btn"></i></a></th>
-                                    <th><a href="<?php echo $this->getUrl()->getUrl('delete', NULL, ['id' => $value->brandId]); ?>"><i class="fa fa-trash btn-danger btn"></i></a></th>
+                                    <th><a href="<?php echo $this->getUrl()->getUrl('form', NULL, ['id' => $value->brandId]); ?>" class="btn btn-warning yellow">Edit</a></th>
+                                    <th><a href="<?php echo $this->getUrl()->getUrl('delete', NULL, ['id' => $value->brandId]); ?>" class="btn btn-danger red">Delete</a></th>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>

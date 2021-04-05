@@ -54,7 +54,7 @@ class Grid extends \Block\Core\Template{
 
         $data = $zipcode->getAdapter()->fetchRow($query);
 
-        return $data['zipcode'];
+        //return $data['zipcode'];
     }
 
     public function getPaginationCustomers()

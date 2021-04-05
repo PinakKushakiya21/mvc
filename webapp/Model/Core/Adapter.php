@@ -137,6 +137,10 @@ class Adapter{
 		return  $result->num_rows;
 	}
 
+	public function getEscapeSequence($string)
+	{
+		return mysqli_real_escape_string($this->getConnect(), $string);
+	}
 }
 
 ?>

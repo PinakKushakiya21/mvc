@@ -81,6 +81,7 @@
                 </th>
                 <th><a href="<?php echo $this->getUrl()->getUrl('form',NULL,['id'=>$value->productId]); ?>" class="btn btn-warning yellow">edit</a></th>
                 <th><a href="<?php echo $this->getUrl()->getUrl('delete',NULL,['id'=>$value->productId ]); ?>" class="btn btn-danger red">delete</a></th>
+                <th><a href="<?php echo $this->getUrl()->getUrl('addItemToCart', 'admin\cart', ['id' => $value->productId]); ?>" class="btn btn-primary black">Add&nbsp;to&nbsp;Cart</a></th>
             
             </tr>
            <?php }  } ?> 
@@ -94,6 +95,7 @@
                 <li class="page-item <?php echo (!$pager->getPrevious()) ? 'disabled' : ''; ?>">
                     <a class="page-link orange text-white" href="<?php echo $this->getUrl()->getUrl(null, null, ['page' => $pager->getPrevious()], true); ?>">Previous</a>
                 </li>
+
 
                 <?php foreach (range($pager->getStart(), $pager->getNoOfPages()) as $value) : ?>
                     <li class="page-item <?php echo ($this->getRequest()->getGet('page') == $value) ? 'active' : ''; ?>">

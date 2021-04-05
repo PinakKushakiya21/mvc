@@ -2,8 +2,8 @@
 
 namespace Model\Admin;
 
-\Mage::getModel("model\core\collection");
-class Collection extends \Model\Core\Collection {
+\Mage::getModel("Model\Core\Table\Collection");
+class Collection extends \Model\Core\Table\Collection {
     
     public function __construct()
     {

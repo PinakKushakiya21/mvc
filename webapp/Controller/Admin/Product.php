@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Admin;
+use Exception;
 
 \Mage::loadClassByFileName('controller\core\admin');
 

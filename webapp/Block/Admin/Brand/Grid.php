@@ -13,6 +13,7 @@ class Grid extends \Block\Core\Template
     protected $brands = null;
     public function __construct()
     {
+        parent::__construct();
         $this->setTemplate('./admin/brand/grid.php');
     }
     public function setBrands($brands = null)

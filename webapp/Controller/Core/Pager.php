@@ -11,7 +11,7 @@ class Pager
     protected $totalRecords = null;
     protected $recordPerPage = null;
     protected $noOfPages = null;
-    protected $start =0;
+    protected $start =1;
     protected $end = null;
     protected $next = null;
     protected $previous = null;

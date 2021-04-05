@@ -32,7 +32,7 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Group Name</th>
-                            <th>Zipcode</th>
+                            <!-- <th>Zipcode</th> -->
                             <th>Email</th>
                             <th>Contact No</th>
                             <th>Status</th>
@@ -58,9 +58,9 @@
                         echo $this->getGroupName($record->group_id);
                     ?>
                             </td>
-                            <td>
-                                <?php echo $this->getZipCode($record->customerId); ?>
-                            </td>
+                            <!-- <td>
+                                <?php //echo $this->getZipCode($record->customerId); ?>
+                            </td> -->
                             <td><?php echo $record->email ?></td>
                             <td><?php echo $record->contactNo ?></td>
                             <td><?php 

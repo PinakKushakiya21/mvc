@@ -49,7 +49,7 @@ class Attribute extends \Block\Core\Template
 
     public function getOptions($id)
     {
-        $option = \Mage::getModel("Model\Attribute\OptionModel");
+        $option = \Mage::getModel("Model\Attribute\Option");
 
         $query = "select * from attribute_option where attributeId='{$id}' ORDER BY sortOrder;";
         $options = $option->fetchAll($query);

@@ -123,20 +123,20 @@ class Attribute extends \Controller\Core\Admin
         $id = $this->getRequest()->getGet('id');
     }
 
-    public function attributeAction()
-    {
+    // public function attributeAction()
+    // {
 
-        $attribute = \Mage::getModel('Model\Attribute');
-        $query = "SELECT * from `attribute_` where `entityTypeId` = 'product'";
-        $data = $attribute->fetchAll($query);
+    //     $attribute = \Mage::getModel('Model\Attribute');
+    //     $query = "SELECT * from `attribute_` where `entityTypeId` = 'product'";
+    //     $data = $attribute->fetchAll($query);
 
-        foreach ($attribute as $data => $attribute) {
+    //     foreach ($attribute as $data => $attribute) {
             
-            // $option = \Mage::getModel($attribute->backendModel);
-            // $options = $option->setAttribute($attribute)->getOptions();
-            // print_r($options);
-            print_r($attribute->getOptions());
+    //         // $option = \Mage::getModel($attribute->backendModel);
+    //         // $options = $option->setAttribute($attribute)->getOptions();
+    //         // print_r($options);
+    //         print_r($attribute->getOptions());
             
-        }
-    }
+    //     }
+    // }
 }

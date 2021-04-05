@@ -2,9 +2,9 @@
 
 namespace Model\Shipment;
 
-\Mage::getModel("model\core\collection");
+\Mage::getModel("Model\Core\Table\Collection");
 
-class Collection extends \Model\Core\Collection {
+class Collection extends \Model\Core\Table\Collection {
     
     public function __construct()
     {

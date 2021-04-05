@@ -58,13 +58,13 @@ class Brand extends \Controller\Core\Admin
 
                     $file_ext = strtolower(end($tmp));
 
-                    $extensions = array("png");
+                    $extensions = array("png","jpg","jpeg");
 
                     if (in_array($file_ext, $extensions) === false) {
-                        throw new Exception("extension not allowed, please choose a PNG file.");
+                        throw new Exception("extension not allowed");
                     }
 
-                    $brand->createdDate = date("Y-m-d H:i:s");
+                    $brand->created_date = date("Y-m-d H:i:s");
 
                     $brandData = $this->getRequest()->getPost('brand');
 
@@ -121,10 +121,10 @@ class Brand extends \Controller\Core\Admin
 
                     $file_ext = strtolower(end($tmp));
 
-                    $extensions = array("png");
+                    $extensions = array("png","jpg","jpeg");
 
                     if (in_array($file_ext, $extensions) === false) {
-                        throw new Exception("extension not allowed, please choose a PNG file.");
+                        throw new Exception("extension not allowed.");
                     }
 
                     $dir = './Media/images/Brand/' . $brandId;

@@ -59,7 +59,7 @@ class Grid extends \Block\Core\Template{
         $records = $product->getAdapter()->fetchOne($query);
 
         $this->getPager()->setTotalRecords($records);
-        $this->getPager()->setRecordPerPage(2);
+        $this->getPager()->setRecordPerPage(3);
 
         $page = $this->getRequest()->getGet('page'); 
 

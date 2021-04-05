@@ -7,12 +7,25 @@ class Table {
     protected $adapter = null;
     protected $tableName = null;
     protected $primaryKey = null; 
+    protected $originalData = [];
     protected $data =[];
 
     public function __construct()
     {
         $this->setTableName($this->tableName)->setPrimaryKey($this->primaryKey);
     }
+
+    // public function getOriginalData()
+    // {
+    //     return $this->getOriginalData;
+    // }
+    // public function setOriginalData($originalData)
+    // {
+    //     $this->originalData = $originalData;
+    //     return $this;
+    // }
+
+
     public function setPrimaryKey($primaryKey)
     {
         $this->primaryKey = $primaryKey;
@@ -64,10 +77,17 @@ class Table {
     }
     public function __get($name)
     {
-        if(!array_key_exists($name,$this->data)){
-            return null;
+        // if(!array_key_exists($name,$this->data)){
+        //     return null;
+        // }
+        // return $this->data[$name];
+        if(array_key_exists($name,$this->data)){
+            return $this->data[$name];
         }
-        return $this->data[$name];
+        if(array_key_exists($name,$this->originalData)){
+            return $this->originalData[$name];
+        }
+        return null;
     }
 
     public function save(){
@@ -119,6 +139,7 @@ class Table {
         foreach ($rows as $key => $value) {
         	$key = new $this;
         	$key->setData($value);
+            // $key->setOriginalData($value);
         	$rowArray[] = $key;
         }
 
@@ -127,6 +148,18 @@ class Table {
         $collection->setData($rowArray);
         unset($rowArray);
         return $collection;
+    }
+
+    public function fetchRow($query)
+    {
+        $row = $this->getAdapter()->fetchRow($query);
+        if (!$row) {
+            return false;
+        }
+        $this->data = $row;
+        // $this->originalData = $row;
+        // $this->resetArray();
+        return $this;
     }
    
 
@@ -154,6 +187,8 @@ class Table {
             return false;
         }
         $this->data = $row;
+        // $this->originalData = $row;
+        // $this->resetArray();
         return $this;
     }
     public function insert($query){
@@ -174,16 +209,15 @@ class Table {
         return $this;
     }
     public function delete($query = null){
+        if (!$query) {
+            $id = $this->data[$this->getPrimaryKey()];
+             $query = "delete from {$this->getTableName()} where {$this->getPrimaryKey()} = {$id}";
 
-        if(!$query){
-            $id = $this->data['id'];
-            $query = "delete from {$this->getTableName()} where {$this->getPrimaryKey()} = {$id}";
-        }
-        
-        $row = $this->getAdapter()->delete($query);
-        if(!$row){
-            return false; 
-        }
+            }
+            $row = $this->getAdapter()->delete($query);
+            if (!$row) {
+            return false;
+            }
         return $this;
     }
 
